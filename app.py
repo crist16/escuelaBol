@@ -3,6 +3,7 @@ from flask import Flask, send_from_directory,request
 from Helpers.helper import generarPdf
 from os import getcwd
 from datetime import datetime
+
 import time
 from routes.files import routes_files
 from docx2pdf import convert
@@ -37,6 +38,7 @@ def obtenerFechaActual():
     return fechaCompletaDeHoy
 
 app = Flask(__name__)
+
 PATH_FILE_OUTPUT = getcwd() + "/Outputs"
 content = {
     "nombreEstudiante": "Cristobal",
@@ -56,11 +58,7 @@ content = {
 
 }
 
-
-
 #app.register_blueprint(routes_files)
-
-
 
 @app.route('/')
 def hello_world():  # put application's code here
@@ -80,8 +78,5 @@ def exportarProsecicion():
     return send_from_directory(PATH_FILE_OUTPUT,path=name_file, as_attachment=True)
 
 
-
-
-
 if __name__ == '__main__':
-    app.run(debug=True,port=4000)
+    app.run()
